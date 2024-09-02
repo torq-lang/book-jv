@@ -3,8 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Torq for Java</title>
-        <meta name="robots" content="noindex">
+        <title>Grammar - Torq for Java</title>
 
 
         <!-- Custom HTML head -->
@@ -89,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="part_0100_title.html">Torq for Java</a></li><li class="chapter-item expanded affix "><a href="part_0200_preface.html">Preface</a></li><li class="chapter-item expanded "><a href="part_0300_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Programmer Guide</li><li class="chapter-item expanded "><a href="part_0400_hello_world.html"><strong aria-hidden="true">2.</strong> Hello, World!</a></li><li class="chapter-item expanded affix "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="part_0700_grammar.html"><strong aria-hidden="true">3.</strong> Grammar</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Benchmarking</div></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><div>Bibliography</div></li><li class="chapter-item expanded affix "><a href="part_0900_references.html">References</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="part_0100_title.html">Torq for Java</a></li><li class="chapter-item expanded affix "><a href="part_0200_preface.html">Preface</a></li><li class="chapter-item expanded "><a href="part_0300_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Programmer Guide</li><li class="chapter-item expanded "><a href="part_0400_hello_world.html"><strong aria-hidden="true">2.</strong> Hello, World!</a></li><li class="chapter-item expanded affix "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="part_0700_grammar.html" class="active"><strong aria-hidden="true">3.</strong> Grammar</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Benchmarking</div></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><div>Bibliography</div></li><li class="chapter-item expanded affix "><a href="part_0900_references.html">References</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -174,90 +173,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="torq-for-java"><a class="header" href="#torq-for-java">Torq for Java</a></h1>
-<p><em>by Glenn Osborne</em></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="preface"><a class="header" href="#preface">Preface</a></h1>
-<p>Like some of you, I programmed sequentially for years, using the occasional thread here and there. I mostly enjoyed the performance gains as processors became faster and faster. Then, processors stopped becoming faster. Instead, processors started becoming more parallel by adding more cores. I became painfully aware that my programming style was not the future. Moreover, programming applications imperatively with shared state, critical sections, and semaphores had been declared an abject failure. I needed to learn a new programming model.</p>
-<blockquote>
-<p><a href="https://www.researchgate.net/publication/2999593_Moore&#x27;s_Law_Past_Present_and_Future">Moore's Law</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2006/EECS-2006-1.html">The Problem With Threads</a></p>
-</blockquote>
-<p>A colleague introduced me to an early version of Scala. Programming in Scala opened my eyes to a new world of concurrent actors, monads, and multi-paradigm programming. I worked hard and became confident in this new environment, but the applications I produced were suspect. Instead of forming a business solution, my programs formed a concurrency solution. Although I liked the sophistication of this new environment, the results just felt wrong. Writing application code, especially for business applications, should be easy, and the results should express the solution clearly without requiring special knowledge.</p>
-<p>While battling the concurrent programming experience, other trends affected my opinions around concurrent programming, such as cloud computing, IT and OT convergence, low-code development, and software composition using web services. Along the way, I studied "Concepts, Techniques, and Models in Computer Programming," paying particular attention to a programming model named <em>Declarative Dataflow</em> that greatly simplified concurrent programming. Declarative dataflow introduced a new construct named the dataflow variable, making concurrent programming extremely simple. I began imagining how this dataflow construct could streamline and accelerate the development of modern cloud applications, low-code platforms, and software composition.</p>
-<p>In my first experiment with declarative dataflow, I created a dynamic programming language named Ozy that ran as a companion language on the JVM. The experiment was especially fruitful as it exposed a weakness in declarative dataflow--dataflow variables cannot be easily shared with other programming languages--and motivated a novel solution.</p>
-<blockquote>
-<p><a href="https://arxiv.org/abs/1604.07642">Ozy: A General Orchestration Container</a></p>
-</blockquote>
-<p>In 2020, I found myself locked down because of COVID-19, staring at a blank screen with an epiphany for a new programming language. The central idea was an actor construct fusing the message-passing protocol with a hidden implementation of declarative dataflow. Unlike typical actor systems, programs would not be formed as state machines, and unlike declarative dataflow, programs would interoperate without knowing dataflow variables. The name Torq came to me as I imagined a programming language with the power to service millions of requests incrementally and fairly, moving massive amounts of data without stalling.</p>
-<p>Torq is the culmination of a personal journey to realize a new programming experience. It consists of a language and a patented programming model named Actorflow. The language is dynamic with optional type annotations, and although interpreted, Torq can be faster than compiled languages by utilizing multiple processors more efficiently. The Actorflow model gives Torq encapsulation power, where actor messages are the inputs and outputs of a hidden dataflow machine.</p>
-<p>This book presents Torq by example, where each example builds on previous examples. I hope you enjoy it.</p>
-<p>--Glenn Osborne</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
-<p>Welcome to the Torq Programming Language for Java developers.</p>
-<p>Big Data analytics, artificial intelligence, and IT/OT convergence are pressuring organizations to be data-centric. The urgent need to manage explosive data growth without losing meaning, where billions of files and records are distributed over thousands of computers, is a significant challenge. Torq addresses several problem areas directly with its simple yet highly concurrent data processing model.</p>
-<p>Several problem areas motivated the design of Torq:</p>
-<ol>
-<li>Data contextualization - enhance live data meaningfully before it is stored</li>
-<li>Enterprise convergence - create meaningful services spanning departments and divisions</li>
-<li>Situational applications - compose low-cost highly-valued applications quickly</li>
-</ol>
-<dl>
-    <dt>Data contextualization</dt>
-    <dd>Modern data fuels analytics and artificial intelligence. To make data specifically meaningful, it needs preprocessing, contextualization, and additional features before reaching storage. Torq can enhance existing dataflows efficiently with related data to help reveal insights that would otherwise go unseen.</dd>
-    <dt>Enterprise convergence</dt>
-    <dd>Enterprise workflows require applications spanning multiple departments and divisions. Initiatives, such as the "Unified Name Space," aim to tear down traditional silos. Torq can help unify the enterprise by composing meaningful services spanning departments and divisions.</dd>
-    <dt>Situational applications</dt>
-    <dd>Recent advancements have enabled solutions that were out of reach only a few years ago, creating a massive demand for new solutions. Low-code platforms help citizen developers reduce software backlogs. Torq can be used openly and directly to create low-code solutions with intrinsic concurrency. Existing platforms, on the other hand, must implement proprietary processing engines driven by configurations files.</dd>
-</dl>
-<h2 id="concurrent-programming-is-hard-really-hard"><a class="header" href="#concurrent-programming-is-hard-really-hard">Concurrent programming is hard, really hard</a></h2>
-<p>What makes concurrent programming so hard that it would justify a new programming language like Torq?</p>
-<p>Mainstream programming suffers an incurable problem: variables alone cannot refer to shared memory values from multiple threads. Shared memory values require multiple threads to explicitly synchronize access, and as <a href="part_0900_references.html">Lee (2006)</a> formalized, programming over shared memory with threads is a failure. To solve this problem, the industry has adopted models other than shared memory for concurrency, such as message passing, functional programming, and borrow checking. In each of these models, programming is highly structured to avoid shared memory and unsafe access. Unfortunately, these models tend to create complex and tangled code. In the degenerative case, they organize code into concurrency solutions instead of application solutions.</p>
-<p>A programming model does exist where multiple threads can share memory without explicit synchronization. Borrowed from logic programming, <em>Declarative Dataflow</em> (<a href="part_0900_references.html">Van-Roy, P., &amp; Haridi, S., 2004</a>) computes over single-assignment variables called dataflow variables. A <em>dataflow variable</em> is initially unbound, but once bound, it is immutable. Threads that produce information bind dataflow variables, and threads that consume information suspend until dataflow variables are bound. This <em>dataflow rule</em> describes a producer-consumer interaction that implicitly synchronizes access to shared memory, resulting in a natural style void of technical concerns unrelated to the problem. Unfortunately, adopting declarative dataflow is highly disruptive because it requires runtime architectures to redefine the fundamental semantics of the memory variable for all processes.</p>
-<h2 id="actorflow"><a class="header" href="#actorflow">Actorflow</a></h2>
-<p>Torq is a new programming language based on <em>Actorflow</em>, a patented programming model that fuses message-passing actors with a hidden implementation of declarative dataflow. Concurrently executing actors only communicate by sending immutable messages. Requests and responses are correlated with private dataflow variables, bound indirectly by a controller. Actors that send requests may suspend, waiting for a variable bound by a response. Actors that receive messages may resume when a message received binds a waiting variable. This request-response interaction provides synchronization without sharing variables, giving us a naturally sequential programming style. Moreover, we can compose programs using a mix of libraries from other programming languages. All variables, dataflow or otherwise, are hidden.</p>
-<p>Consider the following program written as a Torq actor. <code>ConcurrentMath</code> calculates the number <code>7</code> using three concurrent child actors to supply the operands in the expression <code>1 + 2 * 3</code>. This example is an unsafe race condition in mainstream languages. However, in Torq, this sequential-looking but concurrently executing code will always calculate <code>7</code> because of the dataflow rule defined previously. Notice that Torq honors operator precedence without explicit synchronization.</p>
-<pre><code>actor ConcurrentMath() in
-    actor Number(n) in
-        handle ask 'get' in
-            n
-        end
-    end
-    var n1 = spawn(Number.cfg(1)),
-        n2 = spawn(Number.cfg(2)),
-        n3 = spawn(Number.cfg(3))
-    handle ask 'calculate' in
-        n1.ask('get') + n2.ask('get') * n3.ask('get')
-    end
-end
-</code></pre>
-<h2 id="concurrent-construction"><a class="header" href="#concurrent-construction">Concurrent Construction</a></h2>
-<p>Torq facilitates a concurrent style of programming not possible in other programming languages. Consider the next example as a slightly modified version of our previous example. Instead of <em>calculating</em> concurrently, we <em>construct</em> concurrently. The concurrent math calculation <code>x + y * z</code> in our first example is replaced with a concurrent data construction <code>[x, y, z]</code> in our second example.</p>
-<blockquote>
-<p>For clarity, we replaced the <code>ask</code> expressions <code>n1.ask('get')</code>, <code>n2.ask('get')</code>, and <code>n3.ask('get')</code> with the symbols <code>x</code>, <code>y</code>, and <code>z</code>, respectively.</p>
-</blockquote>
-<pre><code>actor ConcurrentMathTuple() in
-    actor Number(n) in
-        handle ask 'get' in
-            n
-        end
-    end
-    var n1 = spawn(Number.cfg(1)),
-        n2 = spawn(Number.cfg(2)),
-        n3 = spawn(Number.cfg(3))
-    handle ask 'calculate' in
-        [n1.ask('get'), n2.ask('get'), n3.ask('get')]
-    end
-end
-</code></pre>
-<p>Dataflow variables make concurrent construction possible. Instead of using functional futures, like other programming languages, Torq uses dataflow variables to construct partial data that are complete when concurrent tasks are complete. On the other hand, functional futures require the programmer to synchronize outside the data. The example above hints that Torq can reduce the number of synchronization barriers and thus increase concurrency. As we will see later, Torq can increase concurrency significantly when returning multiple records or streaming data.</p>
-<blockquote>
-<p>In many languages, Futures are also known as Promises.</p>
-</blockquote>
-<p>Note that the implicit synchronization provided by dataflow variables is not the same as the syntactic sugar provided by async-await. Torq is non-blocking concurrent whereas async-await is non-blocking sequential.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="hello-world"><a class="header" href="#hello-world">Hello, World!</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="grammar"><a class="header" href="#grammar">Grammar</a></h1>
+                        <h1 id="grammar"><a class="header" href="#grammar">Grammar</a></h1>
 <h2 id="operators"><a class="header" href="#operators">Operators</a></h2>
 <p>Priority</p>
 <ul>
@@ -537,24 +453,18 @@ fragment HEX_DIGIT: (DIGIT | [a-f] | [A-F]);
 fragment ESC_SEQ: '\\' ([rntfb'"`\\] |
                   'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT);
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="references"><a class="header" href="#references">References</a></h1>
-<p>Bravo, M., Li, Z., Van Roy, P., &amp; Meiklejohn, C. (2014, September). Derflow: distributed deterministic dataflow programming for Erlang. In Proceedings of the Thirteenth ACM SIGPLAN workshop on Erlang (pp. 51-60).</p>
-<p>Crichton, W., Gray, G., &amp; Krishnamurthi, S. (2023). A Grounded Conceptual Model for Ownership Types in Rust. arXiv preprint arXiv:2309.04134.</p>
-<p>Doeraene, S., &amp; Van Roy, P. (2013, July). A new concurrency model for Scala based on a declarative dataflow core. In Proceedings of the 4th Workshop on Scala (pp. 1-10).</p>
-<p>Hewitt, C. (2010). Actor model of computation: scalable robust information systems. arXiv preprint arXiv:1008.1459.</p>
-<p>Kunicki, Jacek (2019). How (Not) to use reactive Streams in Java 9+. https://www.youtube.com/watch?v=zf_0ydYb3JQ.</p>
-<p>Lee, E. A. (2006). The problem with threads. Computer, 39(5), 33-42.</p>
-<p>Leger, P., Fukuda, H., &amp; Figueroa, I. (2021). Continuations and Aspects to Tame Callback Hell on the Web. Journal of Universal Computer Science, 27(9), 955-978.</p>
-<p>Thompson, C. (2023). How Rust went from a side project to the world’s most-loved programming language. s Interneta, https://www.technologyreview.com/2023/02/14/1067869/rust-worlds-fastest-growing-programming-language, 14.</p>
-<p>Van-Roy, P., &amp; Haridi, S. (2004). Concepts, techniques, and models of computer programming. MIT press.</p>
-<p>Van Roy, P., Haridi, S., Schulte, C., &amp; Smolka, G. (2020). A history of the Oz multiparadigm language. Proceedings of the ACM on Programming Languages, 4(HOPL), 1-56.</p>
-<p>Wadler, P. (1992, February). The essence of functional programming. In Proceedings of the 19th ACM SIGPLAN-SIGACT symposium on Principles of programming languages (pp. 1-14).</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="part_0400_hello_world.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
 
+                            <a rel="next prefetch" href="part_0900_references.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -562,7 +472,13 @@ fragment ESC_SEQ: '\\' ([rntfb'"`\\] |
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="part_0400_hello_world.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
+                    <a rel="next prefetch" href="part_0900_references.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
             </nav>
 
         </div>
@@ -601,11 +517,6 @@ fragment ESC_SEQ: '\\' ([rntfb'"`\\] |
 
         <!-- Custom JS scripts -->
 
-        <script>
-        window.addEventListener('load', function() {
-            window.setTimeout(window.print, 100);
-        });
-        </script>
 
     </div>
     </body>
