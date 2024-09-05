@@ -1,6 +1,6 @@
-# Grammar
+# Appendix B: Grammar
 
-## Operators
+## Operators and Symbols
 
 Priority
 * 1 = Highest Priority
@@ -30,7 +30,7 @@ Priority
 | `=`      | Assign value (unify)    | 9        | Right to left |
 | `:=`     | Set cell value          | 9        | Right to left |
 
-# Other Symbols
+The partial arity symbol:
 
 * `...` -- partial arity
 

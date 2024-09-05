@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Preface - Torq for Java</title>
+        <title>Installation - Torq for Java</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="part_0100_title.html">Torq for Java</a></li><li class="chapter-item expanded affix "><a href="part_0200_preface.html" class="active">Preface</a></li><li class="chapter-item expanded "><a href="part_0300_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Programmer Guide</li><li class="chapter-item expanded "><a href="part_0400_hello_world.html"><strong aria-hidden="true">2.</strong> Hello, World!</a></li><li class="chapter-item expanded affix "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="part_0700_grammar.html"><strong aria-hidden="true">3.</strong> Grammar</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Benchmarking</div></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><div>Bibliography</div></li><li class="chapter-item expanded affix "><a href="part_0900_references.html">References</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="book_title.html">Torq for Java</a></li><li class="chapter-item expanded affix "><a href="book_preface.html">Preface</a></li><li class="chapter-item expanded "><a href="book_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="book_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="book_installation.html" class="active"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="book_hello_world.html"><strong aria-hidden="true">2.2.</strong> Hello, World!</a></li></ol></li><li class="chapter-item expanded "><a href="book_child_actors.html"><strong aria-hidden="true">3.</strong> Child Actors</a></li><li class="chapter-item expanded "><a href="book_functions.html"><strong aria-hidden="true">4.</strong> Functions</a></li><li class="chapter-item expanded "><a href="book_error_handling.html"><strong aria-hidden="true">5.</strong> Error Handling</a></li><li class="chapter-item expanded "><a href="book_native_methods.html"><strong aria-hidden="true">6.</strong> Native Methods</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="book_executors.html"><strong aria-hidden="true">6.1.</strong> Executors</a></li></ol></li><li class="chapter-item expanded "><a href="book_building_an_api_server.html"><strong aria-hidden="true">7.</strong> Building an API Server</a></li><li class="chapter-item expanded "><a href="book_benchmarking.html"><strong aria-hidden="true">8.</strong> Benchmarking</a></li><li class="chapter-item expanded "><a href="book_appendix.html"><strong aria-hidden="true">9.</strong> Appendix</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="book_basic_types.html"><strong aria-hidden="true">9.1.</strong> A. Basic Types</a></li><li class="chapter-item expanded "><a href="book_grammar.html"><strong aria-hidden="true">9.2.</strong> B. Grammar</a></li></ol></li><li class="chapter-item expanded "><a href="book_references.html">References</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -173,34 +173,164 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="preface"><a class="header" href="#preface">Preface</a></h1>
-<p>Like some of you, I programmed sequentially for years, using the occasional thread here and there. I mostly enjoyed the performance gains as processors became faster and faster. Then, processors stopped becoming faster. Instead, processors started becoming more parallel by adding more cores. I became painfully aware that my programming style was not the future. Moreover, programming applications imperatively with shared state, critical sections, and semaphores had been declared an abject failure. I needed to learn a new programming model.</p>
-<blockquote>
-<p><a href="https://www.researchgate.net/publication/2999593_Moore&#x27;s_Law_Past_Present_and_Future">Moore's Law</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2006/EECS-2006-1.html">The Problem With Threads</a></p>
-</blockquote>
-<p>A colleague introduced me to an early version of Scala. Programming in Scala opened my eyes to a new world of concurrent actors, monads, and multi-paradigm programming. I worked hard and became confident in this new environment, but the applications I produced were suspect. Instead of forming a business solution, my programs formed a concurrency solution. Although I liked the sophistication of this new environment, the results just felt wrong. Writing application code, especially for business applications, should be easy, and the results should express the solution clearly without requiring special knowledge.</p>
-<p>While battling the concurrent programming experience, other trends affected my opinions around concurrent programming, such as cloud computing, IT and OT convergence, low-code development, and software composition using web services. Along the way, I studied "Concepts, Techniques, and Models in Computer Programming," paying particular attention to a programming model named <em>Declarative Dataflow</em> that greatly simplified concurrent programming. Declarative dataflow introduced a new construct named the dataflow variable, making concurrent programming extremely simple. I began imagining how this dataflow construct could streamline and accelerate the development of modern cloud applications, low-code platforms, and software composition.</p>
-<p>In my first experiment with declarative dataflow, I created a dynamic programming language named Ozy that ran as a companion language on the JVM. The experiment was especially fruitful as it exposed a weakness in declarative dataflow--dataflow variables cannot be easily shared with other programming languages--and motivated a novel solution.</p>
-<blockquote>
-<p><a href="https://arxiv.org/abs/1604.07642">Ozy: A General Orchestration Container</a></p>
-</blockquote>
-<p>In 2020, I found myself locked down because of COVID-19, staring at a blank screen with an epiphany for a new programming language. The central idea was an actor construct fusing the message-passing protocol with a hidden implementation of declarative dataflow. Unlike typical actor systems, programs would not be formed as state machines, and unlike declarative dataflow, programs would interoperate without knowing dataflow variables. The name Torq came to me as I imagined a programming language with the power to service millions of requests incrementally and fairly, moving massive amounts of data without stalling.</p>
-<p>Torq is the culmination of a personal journey to realize a new programming experience. It consists of a language and a patented programming model named Actorflow. The language is dynamic with optional type annotations, and although interpreted, Torq can be faster than compiled languages by utilizing multiple processors more efficiently. The Actorflow model gives Torq encapsulation power, where actor messages are the inputs and outputs of a hidden dataflow machine.</p>
-<p>This book presents Torq by example, where each example builds on previous examples. I hope you enjoy it.</p>
-<p>--Glenn Osborne</p>
+                        <h1 id="installation"><a class="header" href="#installation">Installation</a></h1>
+<h2 id="install-java"><a class="header" href="#install-java">Install Java</a></h2>
+<p>Torq for Java requires JDK 17+. Use your favorite JDK provider or one of the following:</p>
+<ul>
+<li>AWS: <a href="https://aws.amazon.com/corretto/">https://aws.amazon.com/corretto/</a></li>
+<li>Microsoft: <a href="https://learn.microsoft.com/en-us/java/openjdk/download">https://learn.microsoft.com/en-us/java/openjdk/download</a></li>
+</ul>
+<h2 id="install-torq-jars"><a class="header" href="#install-torq-jars">Install Torq JARs</a></h2>
+<p>Torq consists of four core JARs, one optional server JAR, and one examples JAR. The core jars are 100% Java with no external dependencies. The server JAR provides dynamic API support and depends on Jetty 12. The examples JAR depends on all the other JARs.</p>
+<h3 id="core-jars"><a class="header" href="#core-jars">Core JARs</a></h3>
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.torqlang&lt;/groupId&gt;
+    &lt;artifactId&gt;torqlang-local&lt;/artifactId&gt;
+    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.torqlang&lt;/groupId&gt;
+    &lt;artifactId&gt;torqlang-lang&lt;/artifactId&gt;
+    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.torqlang&lt;/groupId&gt;
+    &lt;artifactId&gt;torqlang-klvm&lt;/artifactId&gt;
+    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.torqlang&lt;/groupId&gt;
+    &lt;artifactId&gt;torqlang-util&lt;/artifactId&gt;
+    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h3 id="server-jar"><a class="header" href="#server-jar">Server JAR</a></h3>
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.torqlang&lt;/groupId&gt;
+    &lt;artifactId&gt;torqlang-server&lt;/artifactId&gt;
+    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h3 id="examples-jar"><a class="header" href="#examples-jar">Examples JAR</a></h3>
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.torqlang&lt;/groupId&gt;
+    &lt;artifactId&gt;torqlang-examples&lt;/artifactId&gt;
+    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h2 id="install-torq-jars-using-maven"><a class="header" href="#install-torq-jars-using-maven">Install Torq JARs using Maven</a></h2>
+<p>To use Maven, you need to:</p>
+<ol>
+<li>Configure your Maven settings file <code>settings.xml</code>
+<ol>
+<li>Add a GitHub profile</li>
+<li>Add your GitHub identity and personal access token</li>
+</ol>
+</li>
+<li>Configure your project POM file <code>pom.xml</code>
+<ol>
+<li>Add the Torq GitHub repository</li>
+</ol>
+</li>
+</ol>
+<p>For detailed guidance, see
+GitHub, <a href="https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry">Learn more about Maven</a>.</p>
+<h3 id="configure-settingsxml"><a class="header" href="#configure-settingsxml">Configure <code>settings.xml</code></a></h3>
+<h4 id="add-a-github-profile"><a class="header" href="#add-a-github-profile">Add a GitHub profile</a></h4>
+<p>Add a GitHub profile to your Maven settings. Replace <code>OWNER</code> with <code>torq-lang</code> and <code>REPOSITORY</code> with <code>torq-jv</code>.</p>
+<pre><code class="language-xml">&lt;profile&gt;
+    &lt;id&gt;github&lt;/id&gt;
+    &lt;repositories&gt;
+        &lt;repository&gt;
+            &lt;id&gt;central&lt;/id&gt;
+            &lt;url&gt;https://repo1.maven.org/maven2&lt;/url&gt;
+        &lt;/repository&gt;
+        &lt;repository&gt;
+            &lt;id&gt;github&lt;/id&gt;
+            &lt;url&gt;https://maven.pkg.github.com/OWNER/REPOSITORY&lt;/url&gt;
+            &lt;snapshots&gt;
+                &lt;enabled&gt;true&lt;/enabled&gt;
+            &lt;/snapshots&gt;
+        &lt;/repository&gt;
+    &lt;/repositories&gt;
+&lt;/profile&gt;
+</code></pre>
+<h4 id="add-your-github-identity-and-personal-access-token"><a class="header" href="#add-your-github-identity-and-personal-access-token">Add your GitHub identity and personal access token</a></h4>
+<p>Add a GitHub server to your list of servers. Replace <code>USERNAME</code> with your GitHub user ID and replace <code>TOKEN</code> with your
+GitHub personal access token.</p>
+<pre><code class="language-xml">&lt;servers&gt;
+    &lt;server&gt;
+        &lt;id&gt;github&lt;/id&gt;
+        &lt;username&gt;USERNAME&lt;/username&gt;
+        &lt;password&gt;TOKEN&lt;/password&gt;
+    &lt;/server&gt;
+&lt;/servers&gt;
+</code></pre>
+<h3 id="configure-pomxml"><a class="header" href="#configure-pomxml">Configure <code>pom.xml</code></a></h3>
+<p>Your POM file must contain two declarations:</p>
+<ol>
+<li>A repository declaration</li>
+<li>A dependency for each Torq JAR being used</li>
+</ol>
+<pre><code class="language-xml">&lt;project&gt;
+
+    &lt;!-- Declare the GitHub repository for Torq --&gt;
+    &lt;repositories&gt;
+        &lt;repository&gt;
+            &lt;id&gt;github&lt;/id&gt;
+            &lt;url&gt;https://maven.pkg.github.com/torq-lang/torq-jv&lt;/url&gt;
+        &lt;/repository&gt;
+    &lt;/repositories&gt;
+
+    &lt;!-- Declare a dependency for each Torq JAR used --&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+           &lt;groupId&gt;org.torqlang&lt;/groupId&gt;
+           &lt;artifactId&gt;torqlang-server&lt;/artifactId&gt;
+           &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+        &lt;/dependency&gt;       
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.torqlang&lt;/groupId&gt;
+            &lt;artifactId&gt;torqlang-local&lt;/artifactId&gt;
+            &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.torqlang&lt;/groupId&gt;
+            &lt;artifactId&gt;torqlang-lang&lt;/artifactId&gt;
+            &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.torqlang&lt;/groupId&gt;
+            &lt;artifactId&gt;torqlang-util&lt;/artifactId&gt;
+            &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.torqlang&lt;/groupId&gt;
+            &lt;artifactId&gt;torqlang-klvm&lt;/artifactId&gt;
+            &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.torqlang&lt;/groupId&gt;
+            &lt;artifactId&gt;torqlang-examples&lt;/artifactId&gt;
+            &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+
+&lt;/project&gt;
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="part_0100_title.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="book_getting_started.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="part_0300_introduction.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="book_hello_world.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -210,11 +340,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="part_0100_title.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="book_getting_started.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="part_0300_introduction.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="book_hello_world.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
