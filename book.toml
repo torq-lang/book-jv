@@ -7,3 +7,6 @@ title = "Torq for Java"
 
 [build]
 build-dir = "docs"
+
+[output.html]
+google-analytics = "G-Y2GSHPDEDN"

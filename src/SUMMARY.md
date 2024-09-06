@@ -1,6 +1,6 @@
 # Summary
 
-[Torq for Java](./book_title.md)
+[Cover](./book_cover)
 [Preface](./book_preface.md)
 
 - [Introduction](./book_introduction.md)
