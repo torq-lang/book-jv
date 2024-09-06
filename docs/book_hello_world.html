@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="book_title.html">Torq for Java</a></li><li class="chapter-item expanded affix "><a href="book_preface.html">Preface</a></li><li class="chapter-item expanded "><a href="book_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="book_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="book_installation.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="book_hello_world.html" class="active"><strong aria-hidden="true">2.2.</strong> Hello, World!</a></li></ol></li><li class="chapter-item expanded "><a href="book_child_actors.html"><strong aria-hidden="true">3.</strong> Child Actors</a></li><li class="chapter-item expanded "><a href="book_functions.html"><strong aria-hidden="true">4.</strong> Functions</a></li><li class="chapter-item expanded "><a href="book_error_handling.html"><strong aria-hidden="true">5.</strong> Error Handling</a></li><li class="chapter-item expanded "><a href="book_native_methods.html"><strong aria-hidden="true">6.</strong> Native Methods</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="book_executors.html"><strong aria-hidden="true">6.1.</strong> Executors</a></li></ol></li><li class="chapter-item expanded "><a href="book_building_an_api_server.html"><strong aria-hidden="true">7.</strong> Building an API Server</a></li><li class="chapter-item expanded "><a href="book_benchmarking.html"><strong aria-hidden="true">8.</strong> Benchmarking</a></li><li class="chapter-item expanded "><a href="book_appendix.html"><strong aria-hidden="true">9.</strong> Appendix</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="book_basic_types.html"><strong aria-hidden="true">9.1.</strong> A. Basic Types</a></li><li class="chapter-item expanded "><a href="book_grammar.html"><strong aria-hidden="true">9.2.</strong> B. Grammar</a></li></ol></li><li class="chapter-item expanded "><a href="book_references.html">References</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="book_cover.html">Cover</a></li><li class="chapter-item expanded affix "><a href="book_preface.html">Preface</a></li><li class="chapter-item expanded "><a href="book_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="book_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="book_installation.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="book_hello_world.html" class="active"><strong aria-hidden="true">2.2.</strong> Hello, World!</a></li></ol></li><li class="chapter-item expanded "><a href="book_child_actors.html"><strong aria-hidden="true">3.</strong> Child Actors</a></li><li class="chapter-item expanded "><a href="book_functions.html"><strong aria-hidden="true">4.</strong> Functions</a></li><li class="chapter-item expanded "><a href="book_error_handling.html"><strong aria-hidden="true">5.</strong> Error Handling</a></li><li class="chapter-item expanded "><a href="book_native_methods.html"><strong aria-hidden="true">6.</strong> Native Methods</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="book_executors.html"><strong aria-hidden="true">6.1.</strong> Executors</a></li></ol></li><li class="chapter-item expanded "><a href="book_building_an_api_server.html"><strong aria-hidden="true">7.</strong> Building an API Server</a></li><li class="chapter-item expanded "><a href="book_benchmarking.html"><strong aria-hidden="true">8.</strong> Benchmarking</a></li><li class="chapter-item expanded "><a href="book_appendix.html"><strong aria-hidden="true">9.</strong> Appendix</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="book_basic_types.html"><strong aria-hidden="true">9.1.</strong> A. Basic Types</a></li><li class="chapter-item expanded "><a href="book_grammar.html"><strong aria-hidden="true">9.2.</strong> B. Grammar</a></li></ol></li><li class="chapter-item expanded "><a href="book_references.html">References</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -309,6 +309,22 @@ public static void perform() throws Exception {
             }
         </script>
 
+        <!-- Google Analytics Tag -->
+        <script>
+            var localAddrs = ["localhost", "127.0.0.1", ""];
+
+            // make sure we don't activate google analytics if the developer is
+            // inspecting the book locally...
+            if (localAddrs.indexOf(document.location.hostname) === -1) {
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'G-Y2GSHPDEDN', 'auto');
+                ga('send', 'pageview');
+            }
+        </script>
 
 
         <script>

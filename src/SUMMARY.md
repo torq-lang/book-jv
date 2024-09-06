@@ -1,6 +1,6 @@
 # Summary
 
-[Cover](./book_cover)
+[Cover](./book_cover.md)
 [Preface](./book_preface.md)
 
 - [Introduction](./book_introduction.md)
