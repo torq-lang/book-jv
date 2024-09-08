@@ -8,6 +8,8 @@
   - [Installation](./book_installation.md)
   - [Hello, World!](./book_hello_world.md)
 - [Child Actors](./book_child_actors.md)
+- [Numbers](./book_numbers.md)
+- [Records](./book_records.md)
 - [Functions](./book_functions.md)
 - [Error Handling](./book_error_handling.md)
 - [Native Actors](book_native_actors.md) 

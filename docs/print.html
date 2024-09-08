@@ -8,7 +8,15 @@
 
 
         <!-- Custom HTML head -->
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y2GSHPDEDN"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
         
+          gtag('config', 'G-Y2GSHPDEDN');
+        </script>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
@@ -89,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="book_cover.html">Cover</a></li><li class="chapter-item expanded affix "><a href="book_preface.html">Preface</a></li><li class="chapter-item expanded "><a href="book_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="book_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="book_installation.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="book_hello_world.html"><strong aria-hidden="true">2.2.</strong> Hello, World!</a></li></ol></li><li class="chapter-item expanded "><a href="book_child_actors.html"><strong aria-hidden="true">3.</strong> Child Actors</a></li><li class="chapter-item expanded "><a href="book_functions.html"><strong aria-hidden="true">4.</strong> Functions</a></li><li class="chapter-item expanded "><a href="book_error_handling.html"><strong aria-hidden="true">5.</strong> Error Handling</a></li><li class="chapter-item expanded "><a href="book_native_actors.html"><strong aria-hidden="true">6.</strong> Native Actors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="book_executors.html"><strong aria-hidden="true">6.1.</strong> Executors</a></li></ol></li><li class="chapter-item expanded "><a href="book_building_an_api_server.html"><strong aria-hidden="true">7.</strong> Building an API Server</a></li><li class="chapter-item expanded "><a href="book_benchmarking.html"><strong aria-hidden="true">8.</strong> Benchmarking</a></li><li class="chapter-item expanded "><a href="book_appendix.html"><strong aria-hidden="true">9.</strong> Appendix</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="book_basic_types.html"><strong aria-hidden="true">9.1.</strong> A. Basic Types</a></li><li class="chapter-item expanded "><a href="book_grammar.html"><strong aria-hidden="true">9.2.</strong> B. Grammar</a></li></ol></li><li class="chapter-item expanded "><a href="book_references.html">References</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="book_cover.html">Cover</a></li><li class="chapter-item expanded affix "><a href="book_preface.html">Preface</a></li><li class="chapter-item expanded "><a href="book_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="book_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="book_installation.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="book_hello_world.html"><strong aria-hidden="true">2.2.</strong> Hello, World!</a></li></ol></li><li class="chapter-item expanded "><a href="book_child_actors.html"><strong aria-hidden="true">3.</strong> Child Actors</a></li><li class="chapter-item expanded "><a href="book_numbers.html"><strong aria-hidden="true">4.</strong> Numbers</a></li><li class="chapter-item expanded "><a href="book_records.html"><strong aria-hidden="true">5.</strong> Records</a></li><li class="chapter-item expanded "><a href="book_functions.html"><strong aria-hidden="true">6.</strong> Functions</a></li><li class="chapter-item expanded "><a href="book_error_handling.html"><strong aria-hidden="true">7.</strong> Error Handling</a></li><li class="chapter-item expanded "><a href="book_native_actors.html"><strong aria-hidden="true">8.</strong> Native Actors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="book_executors.html"><strong aria-hidden="true">8.1.</strong> Executors</a></li></ol></li><li class="chapter-item expanded "><a href="book_building_an_api_server.html"><strong aria-hidden="true">9.</strong> Building an API Server</a></li><li class="chapter-item expanded "><a href="book_benchmarking.html"><strong aria-hidden="true">10.</strong> Benchmarking</a></li><li class="chapter-item expanded "><a href="book_appendix.html"><strong aria-hidden="true">11.</strong> Appendix</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="book_basic_types.html"><strong aria-hidden="true">11.1.</strong> A. Basic Types</a></li><li class="chapter-item expanded "><a href="book_grammar.html"><strong aria-hidden="true">11.2.</strong> B. Grammar</a></li></ol></li><li class="chapter-item expanded "><a href="book_references.html">References</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -619,6 +627,24 @@ public static void perform() throws Exception {
     checkExpectedResponse(Int32.of(57), response);
 }
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="numbers"><a class="header" href="#numbers">Numbers</a></h1>
+<ul>
+<li>Int</li>
+<li>Flt</li>
+<li>Dec</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="records"><a class="header" href="#records">Records</a></h1>
+<ul>
+<li>Syntax
+<ul>
+<li>Labels</li>
+<li>Features</li>
+</ul>
+</li>
+<li>Selecting using <code>.</code></li>
+<li>Selecting using <code>[]</code></li>
+<li>Feature order</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="functions"><a class="header" href="#functions">Functions</a></h1>
 <h2 id="factorial"><a class="header" href="#factorial"><code>Factorial</code></a></h2>
 <p><img src="./image_factorial.png" alt="Factorial" /></p>
@@ -663,6 +689,17 @@ public static void perform() throws Exception {
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="error-handling"><a class="header" href="#error-handling">Error Handling</a></h1>
+<h2 id="error-messages"><a class="header" href="#error-messages">Error Messages</a></h2>
+<ul>
+<li>Reference standard JSON schema for error handling</li>
+<li>Align Torq error messages with JSON standard</li>
+<li>Document the techniques for return standard error messages</li>
+</ul>
+<h2 id="failed-values"><a class="header" href="#failed-values">Failed Values</a></h2>
+<ul>
+<li>Explain and demonstrate how <code>FailedValue</code>s work</li>
+<li>Explain how <code>FailedValue</code> is mapped to standard JSON errors</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="native-actors"><a class="header" href="#native-actors">Native Actors</a></h1>
 <h2 id="northwind-db"><a class="header" href="#northwind-db"><code>Northwind DB</code></a></h2>
 <p><img src="./image_northwind_db.png" alt="Northwind DB Diagram" /></p>
@@ -673,7 +710,16 @@ public static void perform() throws Exception {
 <div style="break-before: page; page-break-before: always;"></div><h1 id="executors"><a class="header" href="#executors">Executors</a></h1>
 <h2 id="compute-vs-io-architecture"><a class="header" href="#compute-vs-io-architecture">Compute vs I/O Architecture</a></h2>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="building-an-api-server"><a class="header" href="#building-an-api-server">Building an API Server</a></h1>
+<ul>
+<li>Build API uses cases for Northwind DB native actors</li>
+<li>Build an API server to access Northwind DB use cases</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="benchmarking"><a class="header" href="#benchmarking">Benchmarking</a></h1>
+<ul>
+<li>Build benchmarking uses cases for Northwind API</li>
+<li>Run benchmarking over the Northwind API uses cases</li>
+<li>Document the benchmarking results</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="appendix"><a class="header" href="#appendix">Appendix</a></h1>
 <p>In the appendix, we provide the following references:</p>
 <ul>
@@ -992,22 +1038,6 @@ fragment ESC_SEQ: '\\' ([rntfb'"`\\] |
         </div>
 
 
-        <!-- Google Analytics Tag -->
-        <script>
-            var localAddrs = ["localhost", "127.0.0.1", ""];
-
-            // make sure we don't activate google analytics if the developer is
-            // inspecting the book locally...
-            if (localAddrs.indexOf(document.location.hostname) === -1) {
-                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-                ga('create', 'G-Y2GSHPDEDN', 'auto');
-                ga('send', 'pageview');
-            }
-        </script>
 
 
         <script>
