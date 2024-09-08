@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Hello, World! - Torq for Java</title>
+        <title>Northwind Database - Torq for Java</title>
 
 
         <!-- Custom HTML head -->
@@ -96,7 +96,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="book_cover.html">Cover</a></li><li class="chapter-item expanded affix "><a href="book_preface.html">Preface</a></li><li class="chapter-item expanded "><a href="book_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="book_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="book_installation.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="book_hello_world.html" class="active"><strong aria-hidden="true">2.2.</strong> Hello, World!</a></li></ol></li><li class="chapter-item expanded "><a href="book_child_actors.html"><strong aria-hidden="true">3.</strong> Child Actors</a></li><li class="chapter-item expanded "><a href="book_numbers.html"><strong aria-hidden="true">4.</strong> Numbers</a></li><li class="chapter-item expanded "><a href="book_records.html"><strong aria-hidden="true">5.</strong> Records</a></li><li class="chapter-item expanded "><a href="book_functions.html"><strong aria-hidden="true">6.</strong> Functions</a></li><li class="chapter-item expanded "><a href="book_error_handling.html"><strong aria-hidden="true">7.</strong> Error Handling</a></li><li class="chapter-item expanded "><a href="book_native_actors.html"><strong aria-hidden="true">8.</strong> Native Actors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="book_northwind_db.html"><strong aria-hidden="true">8.1.</strong> Northwind Database</a></li><li class="chapter-item expanded "><a href="book_executors.html"><strong aria-hidden="true">8.2.</strong> Executors</a></li></ol></li><li class="chapter-item expanded "><a href="book_building_an_api_server.html"><strong aria-hidden="true">9.</strong> Building an API Server</a></li><li class="chapter-item expanded "><a href="book_benchmarking.html"><strong aria-hidden="true">10.</strong> Benchmarking</a></li><li class="chapter-item expanded "><a href="book_appendix.html"><strong aria-hidden="true">11.</strong> Appendix</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="book_basic_types.html"><strong aria-hidden="true">11.1.</strong> A. Basic Types</a></li><li class="chapter-item expanded "><a href="book_grammar.html"><strong aria-hidden="true">11.2.</strong> B. Grammar</a></li></ol></li><li class="chapter-item expanded "><a href="book_references.html">References</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="book_cover.html">Cover</a></li><li class="chapter-item expanded affix "><a href="book_preface.html">Preface</a></li><li class="chapter-item expanded "><a href="book_introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="book_getting_started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="book_installation.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="book_hello_world.html"><strong aria-hidden="true">2.2.</strong> Hello, World!</a></li></ol></li><li class="chapter-item expanded "><a href="book_child_actors.html"><strong aria-hidden="true">3.</strong> Child Actors</a></li><li class="chapter-item expanded "><a href="book_numbers.html"><strong aria-hidden="true">4.</strong> Numbers</a></li><li class="chapter-item expanded "><a href="book_records.html"><strong aria-hidden="true">5.</strong> Records</a></li><li class="chapter-item expanded "><a href="book_functions.html"><strong aria-hidden="true">6.</strong> Functions</a></li><li class="chapter-item expanded "><a href="book_error_handling.html"><strong aria-hidden="true">7.</strong> Error Handling</a></li><li class="chapter-item expanded "><a href="book_native_actors.html"><strong aria-hidden="true">8.</strong> Native Actors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="book_northwind_db.html" class="active"><strong aria-hidden="true">8.1.</strong> Northwind Database</a></li><li class="chapter-item expanded "><a href="book_executors.html"><strong aria-hidden="true">8.2.</strong> Executors</a></li></ol></li><li class="chapter-item expanded "><a href="book_building_an_api_server.html"><strong aria-hidden="true">9.</strong> Building an API Server</a></li><li class="chapter-item expanded "><a href="book_benchmarking.html"><strong aria-hidden="true">10.</strong> Benchmarking</a></li><li class="chapter-item expanded "><a href="book_appendix.html"><strong aria-hidden="true">11.</strong> Appendix</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="book_basic_types.html"><strong aria-hidden="true">11.1.</strong> A. Basic Types</a></li><li class="chapter-item expanded "><a href="book_grammar.html"><strong aria-hidden="true">11.2.</strong> B. Grammar</a></li></ol></li><li class="chapter-item expanded "><a href="book_references.html">References</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -181,105 +181,43 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="hello-world"><a class="header" href="#hello-world">Hello, World!</a></h1>
-<p>In this section, we learn how to create and run simple Torq programs.</p>
-<h2 id="helloworld"><a class="header" href="#helloworld"><code>HelloWorld</code></a></h2>
-<p>The fundamental unit of concurrency in Torq is the actor. In our diagram below, <code>RequestClient</code> and <code>HelloWorld</code> are actors that run concurrently with the potential to run in parallel. <code>RequestClient</code> sends a <code>'hello'</code> message to <code>HelloWorld</code>, and in response, <code>HelloWorld</code> sends a <code>'Hello, World!'</code> message to <code>RequestClient</code>. Note the sold line arrow. The labels are read clockwise, so that we say <code>'hello'</code> is sent from <code>RequestClient</code> to <code>HelloWorld</code> and <code>'Hello, World!'</code> is sent from <code>HelloWorld</code> to <code>RequestClient</code>. The open arrow points toward the recipient of the request and the closed arrow points toward the recipient of the response, the terminus of our interaction.</p>
-<p><img src="./image_hello_world.png" alt="HelloWorld Diagram" /></p>
-<h3 id="programming-helloworld"><a class="header" href="#programming-helloworld">Programming <code>HelloWorld</code></a></h3>
-<p><code>HelloWorld</code> is defined beginning with the <code>actor</code> keyword. Following the actor keyword is the name <code>HelloWorld</code>. An actor can accept parameters that affect how it is configured. In our case, there are no parameters. Next, the actor requires that a body be defined between enclosing <code>in</code> and <code>end</code> keywords. The <code>HelloWorld</code> actor contains just one statement in its body, an ask handler, specified as <code>handle ask 'hello' in ... end</code>.</p>
-<pre><code>actor HelloWorld() in
-    handle ask 'hello' in
-        'Hello, World!'
-    end
-end
-</code></pre>
-<p>Our ask handler is programmed to receive <code>'hello'</code> messages one at a time. If additional <code>'hello'</code> messages are received while one is being processed, they are queued until <code>HelloWorld</code> is ready to receive another. Like our actor, our ask handler requires that a body be defined between enclosing <code>in</code> and <code>end</code> keywords. Our ask handler contains a single expression in its body, the <code>'Hello, World!</code>' string literal. By convention, an ask handler returns the last expression as its result.</p>
-<h3 id="running-helloworld"><a class="header" href="#running-helloworld">Running <code>HelloWorld</code></a></h3>
-<p>Torq is a dynamic language run on the JVM. In this section, we place our source into a Java <code>String</code> literal. With our source code in hand, we build and execute our program from Java using a fluent builder tool.</p>
-<pre><code class="language-java">public static final String SOURCE = """
-    actor HelloWorld() in
-        handle ask 'hello' in
-            'Hello, World!'
-        end
-    end""";
+                        <h1 id="northwind-database"><a class="header" href="#northwind-database">Northwind Database</a></h1>
+<p>In this section, we implement the Northwind database as a through-cache server using a directory as backing storage.</p>
+<p><img src="./image_northwind_db.png" alt="Northwind DB Diagram" /></p>
+<h2 id="read-through-caching"><a class="header" href="#read-through-caching">Read-Through Caching</a></h2>
+<p>A read-through cache acts as an intermediary between an application and a database. When an application reads from the cache, the cache checks if the data is already in memory. If the data is there, the cache returns it directly to the application. If the data is not in memory, the cache loads it from the database, stores it in memory, and then returns it to the application.</p>
+<h2 id="write-through-caching"><a class="header" href="#write-through-caching">Write-Through Caching</a></h2>
+<p>A write-through cache acts as an intermediary between an application and a database. When an application writes to the cache, the cache writes the data to memory first and then immediately writes that cached data through to the database. Processing suspends until the data is successfully written to the database.</p>
+<h1 id="northwinddb"><a class="header" href="#northwinddb"><code>NorthwindDB</code></a></h1>
+<p>A native actor is needs a constructor and an <code>onMessage</code> handler.</p>
+<pre><code class="language-java">package org.torqlang.examples;
 
-public static void perform() throws Exception {
+import org.torqlang.local.*;
 
-    // Build and spawn HelloWorld. After spawning, HelloWorld is waiting to
-    // receive the 'hello' message. The spawn method returns an actorRef used
-    // subsequently to send it messages.
-    ActorRef actorRef = Actor.builder()
-        .spawn(SOURCE);
+import java.util.concurrent.Executor;
 
-    // Send the 'hello' message to the actor reference returned above. Wait a
-    // maximum of 100 milliseconds for a response.
-    Object response = RequestClient.builder()
-        .sendAndAwaitResponse(actorRef, Str.of("hello"), 100, TimeUnit.MILLISECONDS);
-    checkExpectedResponse(Str.of("Hello, World!"), response);
+final class NorthwindDb extends AbstractActor {
+
+    NorthwindDb(Address address, Mailbox mailbox, Executor executor, Logger logger) {
+        super(address, mailbox, executor, logger);
+    }
+
+    @Override
+    protected OnMessageResult onMessage(Envelope[] next) {
+        throw new IllegalStateException("not implemented");
+    }
 }
 </code></pre>
-<p>Click <a href="https://github.com/torq-lang/torq-jv/blob/main/torqlang-examples/src/main/java/org/torqlang/examples/HelloWorld.java">org.torqlang.examples.HelloWorld.java</a> to see the full source code on GitHub.</p>
-<h2 id="helloworldwithgoodbye"><a class="header" href="#helloworldwithgoodbye"><code>HelloWorldWithGoodbye</code></a></h2>
-<p>In our <code>HelloWorldWithGoodbye</code> diagram, we extend <code>HelloWorld</code> with a <code>'goodbye'</code> handler. We use two instances of <code>RequestClient</code> to send two different requests to just one instance of <code>HellWorldWithGoodbye</code>. This demonstrates a long-running actor servicing different requests from multiple clients.</p>
-<p><img src="./image_hello_world_with_goodbye.png" alt="HelloWorldWithGoodbye Diagram" /></p>
-<h3 id="programming-helloworldwithgoodbye"><a class="header" href="#programming-helloworldwithgoodbye">Programming <code>HelloWorldWithGoodbye</code></a></h3>
-<pre><code>actor HelloWorld() in
-    handle ask 'hello' in
-        'Hello, World!'
-    end
-    handle ask 'goodbye' in
-        'Goodbye, World!'
-    end
-end
-</code></pre>
-<h3 id="running-helloworldwithgoodbye"><a class="header" href="#running-helloworldwithgoodbye">Running <code>HelloWorldWithGoodbye</code></a></h3>
-<pre><code class="language-java">public static final String SOURCE = """
-    actor HelloWorld() in
-        handle ask 'hello' in
-            'Hello, World!'
-        end
-        handle ask 'goodbye' in
-            'Goodbye, World!'
-        end
-    end""";
-
-public static void perform() throws Exception {
-
-    // Build and spawn HelloWorld. After spawning, HelloWorld is waiting to
-    // receive the 'hello' or 'goodbye' message. The spawn method returns an
-    // actorRef used subsequently to send it messages.
-    ActorRef actorRef = Actor.builder()
-        .spawn(SOURCE);
-
-    // Send the first message -- 'hello'
-    Object response = RequestClient.builder()
-        .sendAndAwaitResponse(actorRef, Str.of("hello"), 100, TimeUnit.MILLISECONDS);
-    checkExpectedResponse(Str.of("Hello, World!"), response);
-
-    // Send the second message -- 'goodbye'
-    response = RequestClient.builder()
-        .sendAndAwaitResponse(actorRef, Str.of("goodbye"), 100, TimeUnit.MILLISECONDS);
-    checkExpectedResponse(Str.of("Goodbye, World!"), response);
-}
-</code></pre>
-<h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
-<p>In this section, we learned:</p>
-<ol>
-<li>How to program concurrent actors</li>
-<li>How to run an actor program from Java</li>
-<li>How to use a concurrent actor to service multiple requests</li>
-</ol>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="book_installation.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="book_native_actors.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="book_child_actors.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="book_executors.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -289,11 +227,11 @@ public static void perform() throws Exception {
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="book_installation.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="book_native_actors.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="book_child_actors.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="book_executors.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
