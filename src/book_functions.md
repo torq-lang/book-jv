@@ -1,5 +1,9 @@
 # Functions
 
+## `Factorial`
+
+![Factorial](./image_factorial.png)
+
 ## Programming `Factorial`
 
 ```

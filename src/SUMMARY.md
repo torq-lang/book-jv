@@ -10,7 +10,7 @@
 - [Child Actors](./book_child_actors.md)
 - [Functions](./book_functions.md)
 - [Error Handling](./book_error_handling.md)
-- [Native Methods](book_native_methods.md) 
+- [Native Actors](book_native_actors.md) 
   - [Executors](book_executors.md)
 - [Building an API Server](./book_building_an_api_server.md)
 - [Benchmarking](./book_benchmarking.md)

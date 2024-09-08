@@ -1,5 +1,9 @@
 # Child Actors
 
+## `ConcurrentMath`
+
+![Concurrent Math Diagram](./image_concurrent_math.png)
+
 ## Programming `ConcurrentMath` 
 
 ```
@@ -48,7 +52,11 @@ public static void perform() throws Exception {
 }
 ```
 
-## Programming `ConcurrentMath` with stateful behavior
+## `ConcurrentMath` with increment
+
+![Concurrent Math Diagram](./image_concurrent_math_with_incr.png.png)
+
+## Programming `ConcurrentMath` with increment
 
 ```
 actor ConcurrentMath() in
@@ -74,7 +82,7 @@ actor ConcurrentMath() in
 end
 ```
 
-## Running `ConcurrentMath` with stateful behavior
+## Running `ConcurrentMath` with increment
 
 ```java
 public static final String SOURCE = """
