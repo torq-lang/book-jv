@@ -4,9 +4,9 @@ Welcome to the Torq Programming Language for Java developers.
 
 Big Data analytics, artificial intelligence, and IT/OT convergence are pressuring organizations to be data-centric. The urgent need to manage explosive data growth with meaning, where billions of files and records are distributed over thousands of computers, is a significant challenge.
 
-Torq addresses these challenges by simplifying data-centric programming at scale with a novel programming model. This allows programmers to focus on the application problem rather than the programming problem--increasing programmer productivity while lowering infrastructure costs.
+Torq addresses these challenges by simplifying data-centric programming at scale with a novel programming model. This allows programmers to focus on the application problem rather than the programming problem, leading to efficiencies that lower costs.
 
-The Torq programming model is designed to improve scalability, responsiveness, faster time-to-market, and lower infrastructure costs in three problem areas:
+The Torq programming model is designed to improve scalability, responsiveness, and faster time-to-market in three problem areas:
 
 1. Data contextualization - enhancing live data meaningfully before it is stored
 2. Enterprise convergence - creating meaningful APIs across departments and divisions
@@ -79,8 +79,7 @@ Dataflow variables make concurrent construction possible. Instead of using futur
 
 The Torq effect is more than just a natural programming style. The implicit synchronization afforded by dataflow variables can increase concurrency by reducing synchronization barriers. Consider the following comparison of a simple use-case written in Torq and then Java.
 
-> TODO: INSERT COMPARISON HERE
->
-> Compare a simple use-case written in Torq and Java that retrieves a customer order, product, and contact history.
->
-> Consider another example that streams results.
+> TODO: Insert a Torq vs Java example. Compare a simple use-case written in Torq and Java that retrieves a customer order, product, and contact history.
+
+> TODO: Insert a streaming example that exploits fewer synchronization barriers
+ 

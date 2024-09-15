@@ -50,7 +50,7 @@ public static void perform() throws Exception {
 }
 ~~~
 
-Click [org.torqlang.examples.HelloWorld.java](https://github.com/torq-lang/torq-jv/blob/main/torqlang-examples/src/main/java/org/torqlang/examples/HelloWorld.java) to see the full source code on GitHub.
+> Click [org.torqlang.examples.HelloWorld.java](https://github.com/torq-lang/torq-jv/blob/main/torqlang-examples/src/main/java/org/torqlang/examples/HelloWorld.java) to see the full source code on GitHub.
 
 ## `HelloWorldWithGoodbye`
 

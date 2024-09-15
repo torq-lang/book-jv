@@ -1,4 +1,6 @@
 # Building an API Server
 
-* Build API uses cases for Northwind DB native actors  
-* Build an API server to access Northwind DB use cases
+In this chapter, we provide the following sections:
+
+- [Northwind API](./book_northwind_api.md) - how to implement a Northwind API using Torq actors
+- [API Performance](./book_api_performance.md) - a performance evaluation of the Northwind API design

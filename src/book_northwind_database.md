@@ -1,8 +1,6 @@
 # Northwind Database
 
-In this section, we implement the Northwind database as a through-cache server using a directory as backing storage.
-
-![Northwind DB Diagram](./image_northwind_db.png)
+In this section, we implement the Northwind database as a through-cache server using a directory as a backing storage. The goal is to create a realistic, self-contained data source that not only serves as an example of using native actors but can also be used in follow-on examples and benchmarking.
 
 ## Read-Through Caching
 
@@ -12,26 +10,8 @@ A read-through cache acts as an intermediary between an application and a databa
 
 A write-through cache acts as an intermediary between an application and a database. When an application writes to the cache, the cache writes the data to memory first and then immediately writes that cached data through to the database. Processing suspends until the data is successfully written to the database.
 
-# `NorthwindDB`
+## `NorthwindDB`
 
-A native actor is needs a constructor and an `onMessage` handler.
+The Northwind database uses 4 native actors (A, B, C, and D), 1 shared memory cache (E), and one file system directory (F).
 
-```java
-package org.torqlang.examples;
-
-import org.torqlang.local.*;
-
-import java.util.concurrent.Executor;
-
-final class NorthwindDb extends AbstractActor {
-
-    NorthwindDb(Address address, Mailbox mailbox, Executor executor, Logger logger) {
-        super(address, mailbox, executor, logger);
-    }
-
-    @Override
-    protected OnMessageResult onMessage(Envelope[] next) {
-        throw new IllegalStateException("not implemented");
-    }
-}
-```
+![Northwind DB Diagram](./image_northwind_db.png)

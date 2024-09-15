@@ -1,5 +1,0 @@
-# Numbers
-
-* Int
-* Flt
-* Dec
