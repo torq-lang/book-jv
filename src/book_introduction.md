@@ -53,9 +53,7 @@ end
 
 ## Concurrent Construction
 
-Torq facilitates a concurrent style of programming not possible in mainstream languages. Consider the next example as a slightly modified version of our previous example. Instead of *calculating* concurrently, we *construct* concurrently. The concurrent math calculation `x + y * z` from our first example is replaced with a concurrent data construction `[x, y, z]`. 
-
-> For clarity, we substitute the expressions `n1.ask('get')`, `n2.ask('get')`, and `n3.ask('get')` with the symbols `x`, `y`, and `z`, respectively.
+Torq facilitates a concurrent style of programming not possible in mainstream languages. Consider the next example as a slightly modified version of our previous example. Instead of *calculating* concurrently, we *construct* concurrently. The concurrent math calculation `x + y * z` from our first example is replaced with a concurrent data construction `[x, y, z]`, where `x`, `y`, and `z` stand for `n1.ask('get')`, `n2.ask('get')`, and `n3.ask('get')`, respectively.
 
 ```
 actor ConcurrentMathTuple() in
