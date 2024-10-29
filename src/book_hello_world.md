@@ -24,7 +24,7 @@ Our ask handler is programmed to receive `'hello'` messages one at a time. If ad
 
 ### Running `HelloWorld`
 
-Torq is a dynamic language run on the JVM. In this section, we place our source into a Java `String` literal. With our source code in hand, we build and execute our program from Java using a fluent builder tool.
+Torq is a dynamic language run on the JVM. In this section, we place our source into a Java `String` literal. With our source defined, we build and execute our program from Java using a fluent builder tool.
 
 ~~~java
 public static final String SOURCE = """

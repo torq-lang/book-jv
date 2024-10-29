@@ -18,8 +18,10 @@ The Torq programming model is designed to improve scalability, responsiveness, a
     <dt>Enterprise convergence</dt>
     <dd>Enterprise workflows require applications spanning multiple departments and divisions. Initiatives, such as the "Unified Name Space," aim to tear down traditional silos. Torq provides a dynamic platform to unify the enterprise with composable services that integrate departments and divisions.</dd>
     <dt>Situational applications</dt>
-    <dd>Recent advancements have enabled solutions that were out of reach only a few years ago, creating a massive demand for new solutions. Low-code platforms help citizen developers reduce software backlogs. Torq is a truly low-code platform that scale and execute efficiently.</dd>
+    <dd>Recent advancements have enabled solutions that were out of reach only a few years ago, creating a massive demand for new solutions. Low-code platforms help citizen developers reduce software backlogs. Torq is a truly low-code platform that scales and executes efficiently.</dd>
 </dl>
+
+Torq is a dynamic, gradually typed, concurrent programming language with novel ease-of-use and efficiency.
 
 ## Concurrent programming is hard, really hard
 
@@ -31,7 +33,7 @@ A programming model does exist where multiple threads can share memory without e
 
 ## Actorflow
 
-Torq is a new programming language based on *Actorflow*, a patented programming model that fuses message-passing actors with a hidden implementation of declarative dataflow. Concurrently executing actors only communicate by sending immutable messages. Requests and responses are correlated with private dataflow variables, bound indirectly by a controller. Actors that send requests may suspend, waiting for a variable bound by a response. Actors that receive messages may resume when a received message binds a waiting variable. This request-response interaction provides synchronization without sharing variables, giving us a naturally sequential programming style. Moreover, we can compose programs using a mix of libraries from other programming languages. All variables, dataflow or otherwise, are hidden.
+Torq is a dynamic programming language based on *Actorflow*, a patented programming model that fuses message-passing actors with a hidden implementation of declarative dataflow. Concurrently executing actors only communicate by sending immutable messages. Requests and responses are correlated with private dataflow variables, bound indirectly by a controller. Actors that send requests may suspend, waiting for a variable bound by a response. Actors that receive messages may resume when a received message binds a waiting variable. This request-response interaction provides synchronization without sharing variables, giving us a naturally sequential programming style. Moreover, we can compose programs using a mix of libraries from other programming languages. All variables, dataflow or otherwise, are hidden.
 
 Consider the following program written as a Torq actor. `ConcurrentMath` calculates the number `7` using three concurrent child actors to supply the operands in the expression `1 + 2 * 3`. This example is an unsafe race condition in mainstream languages. However, in Torq, this sequential-looking but concurrently executing code will always calculate `7` because of the dataflow rule defined previously. Notice that Torq honors operator precedence without explicit synchronization.
 
@@ -71,13 +73,106 @@ actor ConcurrentMathTuple() in
 end
 ```
 
-Dataflow variables make concurrent construction possible. Instead of using futures (functions and callbacks), like other programming languages, Torq uses dataflow variables to construct partial data that is complete when concurrent tasks are complete. In essence, futures wait for logic, but Torq waits for data.
+Dataflow variables make concurrent construction possible. Instead of using futures (functions and callbacks), like other programming languages, Torq uses dataflow variables to construct partial data that is complete when concurrent tasks are complete. In essence, futures wait for logic, but Torq waits for data. Implicit synchronization provided by dataflow variables is not the same as the syntactic sugar provided by async-await for futures (sometimes called promises). In essence, Torq is non-blocking-concurrent whereas async-await is non-blocking-sequential.
 
-> The implicit synchronization provided by dataflow variables is not the same as the syntactic sugar provided by async-await for futures (sometimes called promises). In essence, Torq is non-blocking-concurrent whereas async-await is non-blocking-sequential. For example, a Torq API server may run a single request over multiple hardware threads simultaneously, whereas an API server written with async-await will not.
+## Streaming Data
 
-The Torq effect is more than just a natural programming style. The implicit synchronization afforded by dataflow variables can increase concurrency by reducing synchronization barriers. Consider the following comparison of a simple use-case written in Torq and then Java.
+In mainstream programming, vendors provide reactive stream libraries "certified" with an official TCK (Technology Compatibility Kit). In Torq, reactive streams are a natural part of the language. A publisher is simply an actor that can respond multiple times to a single request.
 
-> TODO: Insert a Torq vs Java example. Compare a simple use-case written in Torq and Java that retrieves a customer order, product, and contact history.
+The `IntPublisher` can be configured with a range of integers and an increment.
 
-> TODO: Insert a streaming example that exploits fewer synchronization barriers
- 
+```
+actor IntPublisher(first, last, incr) in
+    import system[ArrayList, Cell]
+    import system.Procs.respond
+    var next_int = Cell.new(first)
+    handle ask 'request'#{'count': n} in
+        func calculate_to() in
+            var to = @next_int + (n - 1) * incr
+            if to < last then to else last end
+        end
+        var response = ArrayList.new()
+        var to = calculate_to()
+        while @next_int <= to do
+            response.add(@next_int)
+            next_int := @next_int + incr
+        end
+        if response.size() > 0 then
+            respond(response.to_tuple())
+        end
+        if @next_int <= last then
+            eof#{'more': true}
+        else
+            eof#{'more': false}
+        end
+    end
+end
+```
+
+The `SumOddIntsStream` example spawns and iterates an `IntPublisher`, summing the integers not divisible by two.
+
+```
+actor SumOddIntsStream() in
+    import system[Cell, Stream, ValueIter]
+    import examples.IntPublisher
+    handle ask 'sum'#{'first': first, 'last': last} in
+        var sum = Cell.new(0)
+        var int_publisher = spawn(IntPublisher.cfg(first, last, 1))
+        var int_stream = Stream.new(int_publisher, 'request'#{'count': 3})
+        for i in ValueIter.new(int_stream) do
+            if i % 2 != 0 then sum := @sum + i end
+        end
+        @sum
+    end
+end
+```
+
+The `MergeIntStreams` example spawns two configurations of `IntPublisher`, one for even numbers and one for odd numbers. The even stream publishes 3 integers at a time and the odd stream publishes 2 integers at a time. After spawning the streams, the example performs an asynchronous, concurrent, non-blocking, merge sort while honoring backpressure.
+
+```
+actor MergeIntStreams() in
+    import system[ArrayList, Cell, Stream, ValueIter]
+    import examples.IntPublisher
+    handle ask 'merge' in
+        var odd_iter = ValueIter.new(Stream.new(spawn(IntPublisher.cfg(1, 10, 2)), 'request'#{'count': 3})),
+            even_iter = ValueIter.new(Stream.new(spawn(IntPublisher.cfg(2, 10, 2)), 'request'#{'count': 2}))
+        var answer = ArrayList.new()
+        var odd_next = Cell.new(odd_iter()),
+            even_next = Cell.new(even_iter())
+        while @odd_next != eof && @even_next != eof do
+            if (@odd_next < @even_next) then
+                answer.add(@odd_next)
+                odd_next := odd_iter()
+            else
+                answer.add(@even_next)
+                even_next := even_iter()
+            end
+        end
+        while @odd_next != eof do
+            answer.add(@odd_next)
+            odd_next := odd_iter()
+        end
+        while @even_next != eof do
+            answer.add(@even_next)
+            even_next := even_iter()
+        end
+        answer.to_tuple()
+    end
+end
+```
+
+These kinds of asynchronous, concurrent, non-blocking, reactive streams cannot be created using mainstream languages and libraries that rely on async-await. The mainstream approach is non-blocking, *sequential* programming, which is insufficient. Reactive streams require non-blocking, *concurrent* programming.
+
+"Asynchronous, Concurrent, Non-blocking, Backpressure"
+- Asynchronous: actors don't necessarily wait on other actors
+- Concurrent: actors progress independently and opportunistically
+- Non-blocking: operating system threads are released while waiting
+- Backpressure: publishers cannot produce more than requested
+
+Recall that concurrent is the potential to run in parallel.
+
+## Higher concurrency and throughput
+
+The Torq effect is more than just a natural programming style. The implicit synchronization afforded by dataflow variables can increase concurrency and throughput by reducing synchronization barriers. Consider the following comparison of a simple use-case written in Torq versus Java.
+
+> TODO: Insert the Torq versus Java throughput example--the simple use-case that retrieves a customer order, product, and contact history.

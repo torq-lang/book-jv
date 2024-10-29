@@ -1,4 +1,4 @@
-# Appendix B: Grammar
+# Appendix D: Grammar
 
 ## Operators and Symbols
 

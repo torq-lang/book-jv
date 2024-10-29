@@ -1,4 +1,4 @@
-# Linux Commands
+# Appendix C: Linux Commands
 
 This appendix contains linux commands used in this book.
 

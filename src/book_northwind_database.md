@@ -14,4 +14,6 @@ A write-through cache acts as an intermediary between an application and a datab
 
 The Northwind database uses 4 native actors (A, B, C, and D), 1 shared memory cache (E), and one file system directory (F).
 
+> TODO: Read/Write actions in the `NorthwindDb` diagram need to be corrected to match the actual protocol consisting of Find/Create/Update/Delete vernacular.
+
 ![Northwind DB Diagram](./image_northwind_db.png)
