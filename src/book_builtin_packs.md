@@ -106,15 +106,39 @@ Suspend until `key` becomes bound. Invoke the underlying `put` method using `key
 
 ---
 
+## Int32
+
+A utility pack for `Int32` operations.
+
+### Class Methods
+
+#### Int32.parse(num::Str) -> Int32
+
+Parse an `Int32` from the given `num` argument using the `Integer#parseInt()` method.
+
+---
+
+## Int64
+
+A utility pack for `Int64` operations.
+
+### Class Methods
+
+#### Int64.parse(num::Str) -> Int64
+
+Parse an `Int64` from the given `num` argument using the `Long#parseLong()` method.
+
+---
+
 ## LocalDate
 
 A wrapper for Java `LocalDate`.
 
 ### Class Methods
 
-#### LocalDate.new(date::Str) -> LocalDate
+#### LocalDate.parse(date::Str) -> LocalDate
 
-Create a `LocalDate` instance using the underlying `java.time.LocalDate#parse(CharSequence text)` method.
+Parse a `LocalDate` value from the given `date` argument using the underlying `java.time.LocalDate#parse(CharSequence text)` method.
 
 ---
 
@@ -196,7 +220,7 @@ Subsequently, a timer is spawned as a publisher.
 var timer_pub = spawn(timer_cfg)
 ```
 
-Once spawned, a timer can be used as a stream. The following example iterates over 5 one-second timer ticks. 
+Once spawned, a timer can be consumed using a `Stream` client. The following example iterates over 5 one-second timer ticks. 
 ```
 var timer_pub = spawn(Timer.cfg(1, 'seconds'))
 var tick_count = Cell.new(0)
@@ -217,9 +241,42 @@ Configure a timer with the given delay period and its time unit.
 
 ### Protocol
 
-#### 'request'#{'ticks': Int32} -> StreamSource&lt;Int32&gt;
+#### handle stream 'request'#{'ticks': Int32} -> (Int64[] | 'eof'#{more: Bool})
 
-Respond with the requested number of ticks where each tick is preceded by the delay period defined when the timer was configured.
+> WARNING: The stream protocol is being enhanced and is a work in progress.
+
+Respond with a stream of ticks where each tick is delayed by the period as configured.
+
+The stream protocol declares a single-request, multiple-response protocol between a publisher and subscriber. Specifically, a stream begins with a single request and ends with the `eof#{'more': false}` response. In between the request and end-of-file are zero to many responses where each response is an array of the stream type `Int64`.
+
+An example of the `handle stream 'request'#{'ticks': Int32} -> Int64` protocol:
+1. Send request: `request#{'ticks': 5}`
+2. Accept response: `[1731160281000]`
+3. Accept response: `[1731160282000]`
+4. Accept response: `[1731160283000]`
+5. Accept response: `[1731160284000]`
+6. Accept response: `[1731160285000]`
+7. Accept response: `eof#{'more': false}`
+
+A programmer does not directly implement the stream protocol mentioned above. Instead, the programmer instantiates a stream client to request and consume the timer ticks. For example, the code below instantiates a `Stream` client for a `Timer` publisher and its `'request'#{'ticks': Int32}` message pattern.
+
+```
+var timer_stream = Stream.new(spawn(Timer.cfg(1, 'seconds')),
+    'request'#{'ticks': 5})
+for tick in ValueIter.new(timer_stream) do
+    // Do something once per second for 5 seconds
+end    
+```
+
+> TODO: The `Stream.new(...)` technique above needs to change to the technique below:
+
+```
+var timer_ref = spawn(Timer.cfg(1, 'seconds')) 
+var timer_stream = timer_ref.stream('request'#{'ticks': 5})
+for tick in ValueIter.new(timer_stream) do
+    // Do something once per second for 5 seconds
+end    
+```
 
 ---
 

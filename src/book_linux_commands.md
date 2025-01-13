@@ -32,10 +32,10 @@ Vendor ID:                AuthenticAMD
 
 ## Run on select CPU Cores
 
-Run a Java program constrained to a select set of hardware threads. In this instance, we run `RunNorthwindDb` using cores 0, 1, and 2.
+Run a Java program constrained to a select set of hardware threads. In this instance, we run `BenchNorthwindDb` using cores 0, 1, and 2.
 
 ```
-taskset -c 0-2 java -XX:+UseZGC -p ~/workspace/torq_jv_runtime -m org.torqlang.examples/org.torqlang.examples.RunNorthwindDb
+taskset -c 0-2 java -XX:+UseZGC -p ~/workspace/torq_jv_runtime -m org.torqlang.examples/org.torqlang.examples.BenchNorthwindDb
 ```
 
 ## Display runtime stats
@@ -46,8 +46,46 @@ Show cache misses:
 perf stat -e cache-misses COMMAND
 ```
 
-Show cache misses while running `RunNorthwindDb` using 3 cores:
+Show cache misses while running `BenchNorthwindDb` using 3 cores:
 
 ```
-perf stat -e cache-misses taskset -c 0-2 java -XX:+UseZGC -p ~/workspace/torq_jv_runtime -m org.torqlang.examples/org.torqlang.examples.RunNorthwindDb
+perf stat -e cache-misses taskset -c 0-2 java -XX:+UseZGC -p ~/workspace/torq_jv_runtime -m org.torqlang.examples/org.torqlang.examples.BenchNorthwindDb
+```
+
+Watch threads or NLWP (number of lightweight processes)
+
+```
+watch ps -o nlwp PID
+```
+
+Watch threads or NLWP (number of lightweight processes) using a loop
+
+```
+while true; do ps -o nlwp PID; sleep 5; done
+```
+
+## Sleep Until
+
+The following sleeps until a point in time. Then, it runs the `ls` command
+
+```
+sleep $(expr $(date -d "11/10/2024 12:22:25" +%s) - $(date +%s)) && COMMAND
+```
+
+The following sleeps until a point in time. Then, it runs the `ps` command repeatedly.
+
+```
+sleep $(expr $(date -d "11/10/2024 14:02:35" +%s) - $(date +%s)) && while true; do ps -o nlwp 1544218; sleep 5; done
+```
+
+## How to build and install `wrk2`
+
+```
+sudo apt-get update
+sudo apt-get install -y build-essential libssl-dev git zlib1g-dev
+git clone https://github.com/giltene/wrk2.git
+cd wrk2
+make
+# move the executable to somewhere in your PATH
+sudo cp wrk /usr/local/bin/wrk2
 ```

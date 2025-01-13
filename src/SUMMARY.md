@@ -32,5 +32,4 @@
   - [B. Builtin Packs](./book_builtin_packs.md)
   - [C. Linux Commands](./book_linux_commands.md)
   - [D. Grammar](./book_grammar.md)
-  - [E. Future Changes](./book_future_changes.md)
 - [References](./book_references.md)

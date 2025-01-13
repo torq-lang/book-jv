@@ -2,7 +2,7 @@
 
 In this section, we evaluate the performance of our `NorthwindDb` actor design.
 
-The ultimate goal in scalability is linear scalability, where doubling the number of cores doubles the amount of work your program completes per unit of time, perfect scalability. In practice, this is never achieved (research Amdahl's Law). Moreover, multicore processors can perform worse if applications ignore their effects on CPU caches. 
+The ultimate goal in scalability is linear scalability, where doubling the number of cores doubles the amount of work your program completes per unit of time, perfect scalability. In practice, this is never achieved (see Amdahl's Law). To complicate matters further, multicore processors perform poorly if applications don't consider how CPU caches work. 
 
 To move our designs toward linear scalability, we must understand how CPUs work best and how to avoid problems created by using threads:
 
@@ -42,6 +42,8 @@ As we can see, this formula allocates far more threads for I/O bound actors. Our
 
 ### CPU Executors
 
+> The Torq AffinityExecutor pins a runnable to a single-thread executor. Ultimately, we want to pin the single-thread executor to a hardware thread. Even though we don't yet pin to a hardware thread, our bench results show a significant improvement using the AffinityExecutor.
+
 > TODO: Discuss the AffinityExecutor used to produce `0.00044ms` `NorthwindDb` read times. Demonstrate how few threads produced higher throughput by reducing cache misses.
 
 NOTE: The following cache misses are for 10 iterations. Replace these examples with single iterations.
@@ -72,7 +74,7 @@ RunNorthwindDb
 
 ### I/O Executors
 
-> TODO: Insert an example that leverages more threads to reduce tail latency. Use `NorthwindDb` `readLatencyInNanos` parameter to simulate I/O read latency and its effect on concurrency.
+> TODO: Insert an example that leverages more threads to reduce tail latency. Use `NorthwindDb` `readLatency` parameter to simulate I/O read latency and its effect on concurrency.
 
 ## Comparative Performance
 
